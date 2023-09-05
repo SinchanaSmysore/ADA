@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define x 10
+#define y 100
+
+int euclid(int m,int n)
+{
+    int r;
+    while(n)
+    {
+        r=m%n;
+        m=n;
+        n=r;
+    }
+    return m;
+}
+
+int consec(int m, int n)
+{
+    int min;
+    min=m;
+    if(n<min)
+    min=n;
+    while(1)
+    {
+        if(m%min==0)
+        {
+            if(n%min==0)
+                break;
+            min-=1;
+        }
+        else
+        min-=1;
+    }
+    return min;
+}
+
+int modified(int m,int n)
+{
+    int temp;
+    while(n>0)
+    {
+        if(n>m)
+        {
+            temp=m;m=n;n=temp;
+        }
+        m=m-n;
+    }
+    return m; // m is the GCD
+}
+
+int main()
+{
+    int m,n,ch,gcd;
+    while(1)
+    {
+        printf("GCD\n");
+        printf("1.Euclid\n2.consecutive integer method\n3.modified euclid\nenter two numbers\n");
+        scanf("%d%d",&m,&n);
+        printf("enter choice\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:gcd=euclid(m,n);printf("gcd=%d\n",gcd);
+                    break;
+            case 2:gcd=consec(m,n);printf("gcd=%d\n",gcd);
+                    break;
+            case 3:gcd=modified(m,n);printf("gcd=%d\n",gcd);
+                    break;
+            default:exit(1);
+        }
+    }
+    return 0;
+}
+
+
