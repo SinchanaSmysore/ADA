@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void Insertion_sort(int * arr,int n)
+{
+   int j,i,temp;
+   for( i=1; i<n ; i++)
+   {
+     temp = arr[i];
+     j = i-1;
+     while( j>=0 && arr[j]>temp)
+       {
+           arr[j+1]=arr[j];
+           j--;
+       }
+     arr[j+1] = temp;
+   }
+   return;
+}
+
+void main()
+{
+  int n,*a;
+   printf("enter the value of n\n");
+   scanf("%d",&n);
+   a=(int*)malloc(n*sizeof(n));
+   printf("enter the elements\n");
+   for(int i=0;i<n;i++)
+    scanf("%d",&a[i]);
+   Insertion_sort(a,n);
+   printf("sorted list\n");
+   for(int i=0;i<n;i++)
+    printf("%d  ",a[i]);
+}
