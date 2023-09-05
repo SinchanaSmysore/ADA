@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int binary_search(int *ar,int key,int n)
+{
+  int cnt=0,low=0,high=n-1,mid;
+  while(low<=high)
+  {
+    cnt++;
+    mid=(low+high)/2;
+    if(ar[mid]==key)
+    {
+      printf("Element found!!position is %d\n",(mid+1));
+      return cnt;
+    }
+    if(key<ar[mid])
+    high=mid-1;
+    if(key>ar[mid])
+      low=mid+1;
+   }
+   printf("Element %d not found!!\n",key);
+   return cnt;
+}
+
+void main()
+{
+  FILE *fp1,*fp2;
+  fp1=fopen("best_bs.txt","a");
+  fp2=fopen("worst_bs.txt","a");
+  int *ar,key,i;
+  for(int n=10;n<=100000;n*=10)
+  {
+    ar=(int*)malloc(n*sizeof(int));
+    for(i=0;i<n;i++)
+    {
+       ar[i]=i;
+    }
+  //BEST CASE
+    key=ar[(n-1)/2];
+    fprintf(fp1,"%d %d\n",n,binary_search(ar,key,n));
+  //WORST CASE
+    key=ar[n-1];
+    fprintf(fp2,"%d %d\n",n,binary_search(ar,key,n));
+  }
+ fclose(fp1);
+ fclose(fp2);
+ //system("gnuplot>load 'command_bs.txt'");
+}
