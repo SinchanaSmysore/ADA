@@ -10,15 +10,13 @@ int binary_search(int *ar,int key,int n)
     mid=(low+high)/2;
     if(ar[mid]==key)
     {
-      printf("Element found!!position is %d\n",(mid+1));
-      return cnt;
+     return cnt;
     }
     if(key<ar[mid])
     high=mid-1;
     if(key>ar[mid])
       low=mid+1;
    }
-   printf("Element %d not found!!\n",key);
    return cnt;
 }
 
