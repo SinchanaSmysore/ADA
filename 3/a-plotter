@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int selection_sort(int *ar,int n)
+{
+  int cnt=0,min,temp;
+  for(int i=0;i<n-1;i++)
+  {
+    min=i;
+    for(int j=i+1;j<n;j++)
+    {
+       cnt++;
+       if(ar[j]<ar[min])
+       {
+         temp=ar[j];
+         ar[j]=ar[min];
+         ar[min]=temp;
+       }
+    }
+  }
+return cnt;
+}
+
+int main()
+{
+  FILE *fp=fopen("general_ss.txt","a");
+  int *ar;
+  for(int n=10;n<=200;n+=10)
+  {
+    ar=(int*)malloc(n*sizeof(int));
+    for(int i=0;i<n;i++)
+    ar[i]=i;
+    fprintf(fp,"%d %d\n",n,selection_sort(ar,n));
+    free(ar);
+  }
+  fclose(fp);
+  //system("gnuplot>load 'command_ss.txt'");
+  return 0;
+}
